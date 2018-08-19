@@ -9,7 +9,6 @@
     let aiOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 // formula for the AI to choose a letter
-    //let aiGuess = aiOptions[Math.floor(Math.random() * aiOptions.length)];
     function makeAiChoice() {
         aiChoice = aiOptions[Math.floor(Math.random() * aiOptions.length)];
     };
@@ -76,4 +75,5 @@
         else {
             alert("you don't need to be psychic to see this code is broken!");
         }
+        //for some reason the guesses left doesn't decrease to 0 when you lose even though you do indeed have 9 attempts
     }
