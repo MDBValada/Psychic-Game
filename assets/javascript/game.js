@@ -1,12 +1,12 @@
 //initialized settings
-    let winsTotal = 0;
-    let lossesTotal = 0;
+    let winsTotalCount = 0;
+    let lossesTotalCount = 0;
     let guessesLeft = 9;
     let lettersGuessed = [];
     let aiChoice = null;
 
 // Array containing all possible rng choices.
-    let aiOptions = ["a"];//, "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    let aiOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 // formula for the AI to choose a letter
     //let aiGuess = aiOptions[Math.floor(Math.random() * aiOptions.length)];
@@ -43,7 +43,7 @@
         let aiCompare = aiOptions.includes(playerGuess)
 
         if (aiCompare === false){
-            alert("You were supposed to choose a letter. You can't be a Psychic if you didn't even get that much correct!")
+            alert("You were asked to choose a letter. You can't possibly be a Psychic if you didn't see this warning coming for not following directions!")
             return false;
         }
         else if (aiCompare === true){
@@ -56,16 +56,24 @@
             //Check to see if the player has won!
             if (guessesLeft > 0){
                 if (playerGuess == aiChoice){
-                winsTotal++;
-                document.querySelector("#winsTotal").innerHTML = "Wins: " + winsTotal;
-                alert("Congratulations You might be psychic. I did indeed choose " + playerGuess);
+                winsTotalCount++;
+                document.querySelector("#winsTotal").innerHTML = "Wins: " + winsTotalCount;
+                alert("Congratulations, you might indeed be psychic. I did choose the letter " + playerGuess + ".");
+                //and reset
                 gameReset()
                 }
             }
-            
-
-            
-
+            //Time to give the game a loss situation!
+            else if(guessesLeft == 0){
+                lossesTotalCount++;
+                document.querySelector("#lossesTotal").innerHTML = "Losses: " + lossesTotalCount;
+                alert("Sadly, you do not appear to be psychic, as I chose the letter  " + aiChoice + ".");
+                //and reset
+                gameReset();
+            }
+        return false;
         }
-
+        else {
+            alert("you don't need to be psychic to see this code is broken!");
+        }
     }
