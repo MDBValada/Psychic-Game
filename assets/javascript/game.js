@@ -6,7 +6,7 @@
     let aiChoice = null;
 
 // Array containing all possible rng choices.
-    let aiOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    let aiOptions = ["a"];//, "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 // formula for the AI to choose a letter
     //let aiGuess = aiOptions[Math.floor(Math.random() * aiOptions.length)];
@@ -49,10 +49,22 @@
         else if (aiCompare === true){
             //decriment guesses Left if player choice was incorrect
             guessesLeft--;
-            //update the html to show the updated guesses left to the player
-            lettersGuessed.push(playerGuess);
             guessesRemaining();
+            //update the html to show the player's guessed letter
+            lettersGuessed.push(playerGuess);
             updateLettersGuessed();
+            //Check to see if the player has won!
+            if (guessesLeft > 0){
+                if (playerGuess == aiChoice){
+                winsTotal++;
+                document.querySelector("#winsTotal").innerHTML = "Wins: " + winsTotal;
+                alert("Congratulations You might be psychic. I did indeed choose " + playerGuess);
+                gameReset()
+                }
+            }
+            
+
+            
 
         }
 
