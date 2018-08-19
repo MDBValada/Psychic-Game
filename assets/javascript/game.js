@@ -11,7 +11,7 @@
 // formula for the AI to choose a letter
     //let aiGuess = aiOptions[Math.floor(Math.random() * aiOptions.length)];
     function makeAiChoice() {
-        lettersGuessed = aiOptions[Math.floor(Math.random() * aiOptions.length)];
+        aiChoice = aiOptions[Math.floor(Math.random() * aiOptions.length)];
     };
 
 //9 guesses restriction before losing, and to add number of guesses to the visible HTML as the first thing that will be updated for each guess
@@ -38,3 +38,22 @@
     guessesRemaining();
 
 //Making the actual Game from this starting position!
+    document.onkeyup = function(event) {
+        let playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
+        let aiCompare = aiOptions.includes(playerGuess)
+
+        if (aiCompare === false){
+            alert("You were supposed to choose a letter. You can't be a Psychic if you didn't even get that much correct!")
+            return false;
+        }
+        else if (aiCompare === true){
+            //decriment guesses Left if player choice was incorrect
+            guessesLeft--;
+            //update the html to show the updated guesses left to the player
+            lettersGuessed.push(playerGuess);
+            guessesRemaining();
+            updateLettersGuessed();
+
+        }
+
+    }
